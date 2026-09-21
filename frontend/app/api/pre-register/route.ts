@@ -1,5 +1,9 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+
+// Force this route to always be server-rendered; never statically collected
+// during `next build` (which would fail without a live MONGODB_URI).
+export const dynamic = "force-dynamic";
 
 // Simple in-memory rate limiter (per IP, 10 requests per 5 minutes)
 const ipRequestCounts = new Map<string, { count: number; expiresAt: number }>();
@@ -87,7 +91,7 @@ export async function POST(request: Request) {
     await collection.insertOne({
       name: name.trim(),
       email: normalizedEmail,
-      product: "sudarshan-harness",
+      product: "sudarshan-ai",
       source: "landing-page",
       status: "pending",
       created_at: now,
