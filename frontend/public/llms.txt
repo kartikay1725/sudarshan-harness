@@ -1,0 +1,36 @@
+# Sudarshan AI
+
+## About
+Sudarshan AI is a customizable, model-agnostic infrastructure layer for AI agents. It provides the surrounding execution environment with tools, permissions, independent verification, and reliability controls. It is not an AI model and not another agent; rather, the harness sits around the agent to independently govern what it can do and verify its outcomes.
+
+## Company
+Sudarshan AI
+
+## Product
+SUTRA (by Sudarshan AI)
+
+## Category
+AI agent infrastructure / AI agent harness
+
+## Core Concepts
+- model-agnostic: sits above model intelligence (Claude, GPT, Codex, Gemini, Qwen, Llama, local models)
+- composable agent environments: modular composition (MODEL + TOOLS + CONTEXT + PERMISSIONS + VERIFICATION + RELIABILITY + GOVERNANCE = AGENT ENVIRONMENT)
+- tools: managed access to APIs, MCP servers, databases, terminals, and custom tools without treating tool protocols as security perimeters
+- permissions: capability-based authorization evaluated prior to execution
+- independent verification: distinguishing "agent completion" from "verified completion" using deterministic tests, schemas, and policy checks
+- reliability & Agent SRE: active loop detection, token budget throttling, stall mitigation, and automatic intervention
+- governance: multi-pillar policies, sensitive file protections, and branch invariants
+- observability: structured execution trajectories and cryptographic audit trails
+
+## Core Principle
+"AI models provide intelligence. Agents provide action. Harnesses provide control."
+The agent must never own or modify its own security boundary.
+
+## Relationship to SUTRA
+SUTRA (https://sutra.sudarshanai.com/) is the first product built by Sudarshan AI, focused specifically on AI-native software engineering.
+
+## Status
+Upcoming infrastructure product. Pre-registration for early access is open.
+
+## Website
+https://sudarshanai.com/

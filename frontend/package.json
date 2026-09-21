@@ -1,0 +1,30 @@
+{
+  "name": "sudarshan-harness-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.6.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.4.0",
+    "lucide-react": "^0.475.0",
+    "mongodb": "^7.6.0",
+    "next": "^16.3.5",
+    "postcss": "^8.5.28",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.16",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,42 @@
+# Sudarshan AI — Comprehensive Specification & Knowledge Base
+
+## 1. What is Sudarshan AI?
+Sudarshan AI is the company building customizable, model-agnostic infrastructure for AI agents. Its platform provides the surrounding execution environment—including tools, permissions, independent verification, reliability controls, and governance—around autonomous agent runs.
+
+## 2. Who makes SUTRA?
+Sudarshan AI is the company behind SUTRA. SUTRA is the first product built by Sudarshan AI.
+
+## 3. What problem does the Sudarshan AI platform solve?
+As AI agents gain autonomous capabilities across repositories, terminals, and production APIs, their failure modes become severe: looping indefinitely, executing unauthorized file modifications, bypassing security boundaries, and self-declaring unverified work as complete. The Sudarshan AI infrastructure platform provides an independent, non-bypassable control plane to make agent execution controllable, trustworthy, and auditable.
+
+## 4. Is Sudarshan AI an AI model?
+No. Sudarshan AI is not an AI model and does not compete with foundation models. Its infrastructure is model-agnostic and sits above the intelligence layer, working with models such as Claude, GPT, Codex, Gemini, Qwen, Llama, and self-hosted models.
+
+## 5. Is this an AI agent?
+No. An AI agent harness is not an AI agent. An agent formulates intent and plans actions; the harness sits around the agent to govern permissions, execute tools in sandboxes, run independent verification tests, and enforce security policies.
+
+## 6. What is an AI agent harness and how does it differ from an agent?
+A harness is the execution substrate and control boundary surrounding an agent:
+- AI models provide intelligence.
+- Agents provide action.
+- Harnesses provide control.
+The fundamental invariant is that an agent must never control or define its own security, permission, or verification boundary.
+
+## 7. What is Agent SRE?
+Agent SRE (Site Reliability Engineering for AI Agents) is an architectural discipline and runtime watchdog system that monitors autonomous agent executions for behavioral failure modes: infinite loops, runaway tool calls, excessive token burn, oscillation between contradictory solutions, and stalled processes. The harness detects these anomalies out-of-band and mitigates them via rollback, retry with targeted feedback, or escalation.
+
+## 8. How does independent verification work?
+The harness strictly separates "agent completion" (the model claiming it has finished) from "verified completion" (deterministic passing of automated tests, linters, schemas, and policy assertions). The agent cannot self-sign its own work or bypass external checks.
+
+## 9. What role does MCP (Model Context Protocol) play?
+MCP provides an open, standardized protocol for agents to connect to external tools. However, MCP itself is a communication protocol, not a complete security boundary. The Sudarshan AI platform is responsible for the surrounding authorization, isolation, rate limits, and verification.
+
+## 10. What is the relationship between Sudarshan AI and SUTRA?
+- Company: Sudarshan AI
+- Platform / Infrastructure Vision: Sudarshan AI
+- First Concrete Production Product: SUTRA (https://sutra.sudarshanai.com/)
+SUTRA is an AI-native engineering control plane focused specifically on governed autonomous software engineering. It is built by Sudarshan AI and implements the AI agent harness philosophy in production today.
+
+## 11. Current Status vs Roadmap
+- Current Status: Pre-registration landing page for the broader upcoming Sudarshan AI platform. SUTRA is live in production.
+- Roadmap: Composable harness primitives, cross-model state schemas, pluggable CI/CD verification sandboxes, and universal Agent SRE runtime.

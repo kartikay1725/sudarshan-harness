@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #09090B;
+  --muted: #F4F4F5;
+  --muted-foreground: #71717A;
+  --border: #E4E4E7;
+  --border-strong: #18181B;
+  --surface: #FAFAFA;
+  --surface-hover: #F4F4F5;
+  --surface-elevated: #FFFFFF;
+  --accent: #09090B;
+  --accent-foreground: #FFFFFF;
+  --brand: #09090B;
+  --brand-hover: #27272A;
+  --brand-foreground: #FFFFFF;
+  --sutra: #EA580C;
+  --sutra-hover: #C2410C;
+  --link: #0284C7;
+  --link-hover: #0369A1;
+  --radius: 12px;
+  --radius-xl: 16px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0B0B0F;
+    --foreground: #FAFAFA;
+    --muted: #16161C;
+    --muted-foreground: #A1A1AA;
+    --border: #22222B;
+    --border-strong: #3F3F4E;
+    --surface: #111116;
+    --surface-hover: #17171E;
+    --surface-elevated: #181822;
+    --accent: #FAFAFA;
+    --accent-foreground: #0B0B0F;
+    --brand: #FAFAFA;
+    --brand-hover: #E4E4E7;
+    --brand-foreground: #0B0B0F;
+    --sutra: #F97316;
+    --sutra-hover: #FB923C;
+    --link: #38BDF8;
+    --link-hover: #7DD3FC;
+    --radius: 12px;
+    --radius-xl: 16px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Subtle hairline grid */
+.tech-grid {
+  background-image: 
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Smooth ambient scanning trace */
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.ambient-trace {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--foreground) 50%, transparent 100%);
+  opacity: 0.15;
+  animation: scanline 12s linear infinite;
+  pointer-events: none;
+}
+
+/* Arrow hover physics */
+.sutra-link:hover .arrow-icon {
+  transform: translate(3px, -3px);
+}
+.arrow-icon {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+/* Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .ambient-trace {
+    display: none !important;
+  }
+}
