@@ -1,0 +1,23 @@
+{
+  "name": "@sudarshan/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Sudarshan Harness daemon: REST + SSE bridge used by the CLI, the IDE and the desktop shell.",
+  "main": "./src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sudarshan/adapters": "*",
+    "@sudarshan/capabilities": "*",
+    "@sudarshan/core": "*",
+    "@sudarshan/spec": "*",
+    "@sudarshan/runtime": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}

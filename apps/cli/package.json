@@ -1,0 +1,25 @@
+{
+  "name": "@sudarshan/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "sudarshan \u2014 run governed agent tasks from the terminal.",
+  "bin": {
+    "sudarshan": "./src/cli.ts"
+  },
+  "scripts": {
+    "cli": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sudarshan/adapters": "*",
+    "@sudarshan/capabilities": "*",
+    "@sudarshan/core": "*",
+    "@sudarshan/spec": "*",
+    "@sudarshan/runtime": "*",
+    "@sudarshan/server": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}

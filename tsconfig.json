@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@sudarshan/core": ["packages/core/src/index.ts"],
+      "@sudarshan/core/*": ["packages/core/src/*"],
+      "@sudarshan/adapters": ["packages/adapters/src/index.ts"],
+      "@sudarshan/capabilities": ["packages/capabilities/src/index.ts"],
+      "@sudarshan/spec": ["packages/spec/src/index.ts"],
+      "@sudarshan/runtime": ["packages/runtime/src/index.ts"]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*.ts",
+    "packages/*/test/**/*.ts",
+    "apps/server/src/**/*.ts",
+    "apps/cli/src/**/*.ts",
+    "tests/**/*.ts",
+    "*.ts"
+  ],
+  "exclude": ["node_modules", "frontend", "apps/desktop", "**/dist"]
+}

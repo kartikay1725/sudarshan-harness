@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "task": "Organise the documents in inbox/: invoices into finance/, meeting notes into meetings/, then write INDEX.md describing where everything went.",
+  "capabilities": ["filesystem", "terminal"],
+  "adapter": { "kind": "scripted" },
+  "model": "replay",
+  "expectations": [
+    { "kind": "file_exists", "path": "INDEX.md" },
+    { "kind": "dir_exists", "path": "finance" },
+    { "kind": "dir_exists", "path": "meetings" },
+    { "kind": "file_exists", "path": "finance/invoice-2026-09.txt" },
+    { "kind": "file_exists", "path": "meetings/notes-1.md" },
+    { "kind": "file_absent", "path": "inbox/invoice-2026-09.txt" },
+    { "kind": "file_absent", "path": "inbox/notes-1.md" },
+    { "kind": "file_contains", "path": "INDEX.md", "text": "finance/invoice-2026-09.txt" }
+  ],
+  "fixtures": {
+    "inbox/invoice-2026-09.txt": "INVOICE\nVendor: Arena Cloud Services\nInvoice number: INV-2026-0931\nDate: 2026-09-14\nAmount: 412.55 USD\nStatus: PAID\n",
+    "inbox/notes-1.md": "# Meeting notes — 2026-08-14\n\n- Discussed the harness boundary.\n- Action: write the verification spec.\n",
+    "inbox/todo.md": "# TODO\n\n- [ ] Move invoices into finance/\n- [ ] Move meeting notes into meetings/\n"
+  },
+  "script": [
+    {
+      "kind": "tool",
+      "name": "filesystem.list",
+      "arguments": { "path": "inbox" },
+      "content": "First I need to see what is actually in the inbox."
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.create_dir",
+      "arguments": { "path": "finance" },
+      "content": "Invoices belong in finance/."
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.create_dir",
+      "arguments": { "path": "meetings" },
+      "content": "Meeting notes belong in meetings/."
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.move",
+      "arguments": { "from": "inbox/invoice-2026-09.txt", "to": "finance/invoice-2026-09.txt" }
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.move",
+      "arguments": { "from": "inbox/notes-1.md", "to": "meetings/notes-1.md" }
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.write",
+      "arguments": {
+        "path": "INDEX.md",
+        "content": "# Index\n\nWhere everything went, verified by the Harness.\n\n| Original | Now |\n| --- | --- |\n| inbox/invoice-2026-09.txt | finance/invoice-2026-09.txt |\n| inbox/notes-1.md | meetings/notes-1.md |\n| inbox/todo.md | inbox/todo.md (left in place) |\n"
+      }
+    },
+    {
+      "kind": "tool",
+      "name": "filesystem.list",
+      "arguments": { "path": ".", "recursive": true },
+      "content": "Confirming the final layout."
+    },
+    {
+      "kind": "text",
+      "content": "Done. Moved the invoice to finance/invoice-2026-09.txt and the meeting notes to meetings/notes-1.md, created both directories, and wrote INDEX.md. todo.md was left in inbox/ because the task did not ask for it to move."
+    }
+  ]
+}

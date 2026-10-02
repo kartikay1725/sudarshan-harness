@@ -1,0 +1,6 @@
+INVOICE
+Vendor: Arena Cloud Services
+Invoice number: INV-2026-0931
+Date: 2026-09-14
+Amount: 412.55 USD
+Status: PAID
