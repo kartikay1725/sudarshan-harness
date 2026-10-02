@@ -1,0 +1,18 @@
+{
+  "name": "@sudarshan/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Composition layer: turns a configuration (workspace, model, capabilities, agent.md) into a running Harness.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@sudarshan/adapters": "*",
+    "@sudarshan/capabilities": "*",
+    "@sudarshan/core": "*",
+    "@sudarshan/spec": "*"
+  }
+}

@@ -31,4 +31,34 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = createClientPromise();
 }
 
+/**
+ * The database name must be explicit. `client.db()` with no argument falls back
+ * to whatever database is embedded in the connection string — which on Atlas is
+ * often "test" — so writes silently land in the wrong place.
+ */
+export function databaseName(): string {
+  return process.env.MONGODB_DB ?? "sudarshan";
+}
+
+export const COLLECTIONS = {
+  preRegistrations: "pre_registrations",
+} as const;
+
+/**
+ * Indexes are schema, not per-request work. Ensuring them on every POST paid a
+ * round trip per signup and raced itself under load; ensure them once per
+ * process and treat failure as fatal-at-startup rather than silent.
+ */
+let indexesEnsured: Promise<void> | undefined;
+
+export function ensureIndexes(): Promise<void> {
+  indexesEnsured ??= (async () => {
+    const client = await clientPromise;
+    const collection = client.db(databaseName()).collection(COLLECTIONS.preRegistrations);
+    await collection.createIndex({ email: 1 }, { unique: true, name: "uniq_email" });
+    await collection.createIndex({ created_at: -1 }, { name: "created_at_desc" });
+  })();
+  return indexesEnsured;
+}
+
 export default clientPromise;

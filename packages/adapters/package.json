@@ -1,0 +1,15 @@
+{
+  "name": "@sudarshan/adapters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Model adapters for the Sudarshan Harness. The security model does not change when the intelligence provider does.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@sudarshan/core": "*"
+  }
+}

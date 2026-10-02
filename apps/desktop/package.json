@@ -1,0 +1,126 @@
+{
+  "name": "@sudarshan/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sudarshan IDE \u2014 desktop shell. Hosts the Harness daemon in-process and renders the control surface natively on Windows, Linux and macOS.",
+  "main": "dist/main.cjs",
+  "author": "Sudarshan AI",
+  "license": "UNLICENSED",
+  "scripts": {
+    "bundle": "node scripts/bundle.mjs",
+    "start": "npm run bundle && electron .",
+    "dev": "npm run bundle && electron . --dev",
+    "dist": "npm run bundle && electron-builder",
+    "dist:mac": "npm run bundle && electron-builder --mac",
+    "dist:win": "npm run bundle && electron-builder --win",
+    "dist:linux": "npm run bundle && electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.24.0"
+  },
+  "build": {
+    "appId": "ai.sudarshan.ide",
+    "productName": "Sudarshan IDE",
+    "copyright": "Copyright \u00a9 Sudarshan AI",
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../web/dist",
+        "to": "ide",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../examples/replays",
+        "to": "examples",
+        "filter": [
+          "**/*.json"
+        ]
+      }
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "category": "Development",
+      "maintainer": "Sudarshan AI",
+      "icon": "build/icon.png",
+      "synopsis": "Control and verification layer for AI agents",
+      "description": "Sudarshan IDE hosts the Sudarshan Harness: a local-first, model-agnostic control and verification layer. The agent thinks freely but cannot act freely \u2014 every action passes through an authorization gate, is verified against real system state, and is recorded in an append-only audit trail."
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
+    }
+  }
+}
